@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list</title>
+  </head>
+  <%- include('partials/header.ejs') %>
+  <body>
+    <div class="modal-header p-5 pb-4 border-bottom-0">
+      <h1 class="fw-bold mb-0 fs-2">What do you want to do?</h1>
+    </div>
+
+    <div class="modal-body p-5 pt-0">
+      <form action="/add" method="POST">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control rounded-3"
+            id="floatingInput"
+            placeholder="Go do stuff"
+            name = "task"
+          />
+          <label for="floatingInput">Enter Todo here</label>
+        </div>
+        <button
+          class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+          type="submit" value="OK"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+    <script>
+      function disableMyButton(button) {
+        console.log("button clicked");
+        button.disabled = true;
+        button.classList.add("disabled")
+        button.classList.add("text-decoration-line-through");
+      }
+    </script>
+    <div class="list-group">
+      <% if(locals.taskDict) { %> <%for (const [key, value] of
+      Object.entries(taskDict)){ %>
+      <!-- change value to false onclick -->
+      <a href="#" class="list-group-item list-group-item-action"
+        onclick='disableMyButton(this)'';
+      >
+      <%= key %>
+      </a>
+      <% } %>
+     <% } %>
+
+    </div>
+  </body>
+</html>
